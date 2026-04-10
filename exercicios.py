@@ -170,11 +170,91 @@ def exercicio_16():
         print(f'Enviando dado {i} para a nuvem')
         time.sleep(2)
         print(f'Dado {i} enviado.')
+def exercicio_17():
+    print('Iniciando...')
+    time.sleep(2)
+    notas = []
+    for i in range(4):
+        notas.append(random.randint(0,10))
+    media = sum(notas) / len(notas)
+    maximo = max(notas)
+    minimo = min(notas)
+    time.sleep(1)
+    print('media',media)
+    time.sleep(1)
+    print('maximo',maximo)
+    time.sleep(1)
+    print('minimo',minimo)
+
+def exercicio_18():
+    print('Iniciando...')
+    time.sleep(2)
+    for i in range(1, 21):
+        leitura_vibracao = random.uniform(1, 10)
+        time.sleep(1)
+        print(f'Leitura {i}: {leitura_vibracao:.2f} mm/s')
+        if leitura_vibracao > 8:
+            print('ALERTA: Anomalia detectada! Risco de falha no equipamento.')
+
+def exercicio_19():
+    print('Iniciando...')
+    time.sleep(2)
+    meta_esperada = 50
+    for i in range(1, 21):
+        producao_real = random.randint(30, 60)
+        time.sleep(1)
+        eficiencia = (producao_real / meta_esperada) * 100
+        print(f'Hora {i} - Eficiência: {eficiencia:.2f}% (Produzido: {producao_real}/{meta_esperada})')
+        time.sleep(1)
+        if eficiencia < 80:
+            print('ALERTA: Desempenho crítico. Eficiência abaixo de 80% da meta!')
+        elif eficiencia >= 100:
+            print('Sucesso: Meta atingida ou superada!')
+        else:
+            print('Atenção: Produção abaixo da meta, mas dentro do limite aceitável.')
+
+def exercicio_20():
+    print('Iniciando...')
+    time.sleep(2)
     
+    banco_de_dados = [] 
+    
+    for i in range(1, 21):
+        temperatura = random.randint(30, 110)
+        vibracao = random.uniform(1, 12)
+        time.sleep(1)
+        if temperatura >= 90 or vibracao >= 9:
+            status = "CRÍTICO - Parada Recomendada"
+        elif temperatura >= 75 or vibracao >= 6:
+            status = "ALERTA - Inspeção Necessária"
+        else:
+            status = "NORMAL - Operando"
+            
+        print(f'[SUPERVISÓRIO] Leitura {i} | Temp: {temperatura}C° | Vibração: {vibracao:.2f} | Status: {status}')
+        time.sleep(1)
 
+        banco_de_dados.append({
+            'leitura': i,
+            'temperatura': temperatura,
+            'vibracao': vibracao,
+            'status': status
+        })
 
-
-
+    print('\n' + '='*40)
+    print(' DASHBOARD DE DESEMPENHO (RELATÓRIO FINAL)')
+    print('='*40)
+    time.sleep(2)
+    
+    total_leituras = len(banco_de_dados)
+    leituras_normais = sum(1 for registro in banco_de_dados if "NORMAL" in registro['status'])
+    leituras_alerta = sum(1 for registro in banco_de_dados if "ALERTA" in registro['status'])
+    leituras_criticas = sum(1 for registro in banco_de_dados if "CRÍTICO" in registro['status'])
+    
+    print(f'Total de Amostras: {total_leituras}')
+    print(f'-> Operação Normal: {leituras_normais}')
+    print(f'-> Ocorrências de Alerta: {leituras_alerta}')
+    print(f'-> Ocorrências Críticas: {leituras_criticas}')
+    print('='*40 + '\n')
 
 def master():
     exercicio_1()
@@ -193,4 +273,11 @@ def master():
     exercicio_14()
     exercicio_15()
     exercicio_16()
+    exercicio_17()
+    exercicio_18()
+    exercicio_19()
+exercicio_20()
+
+master()    
+
 
