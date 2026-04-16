@@ -276,7 +276,7 @@ def master():
     exercicio_17()
     exercicio_18()
     exercicio_19()
-exercicio_20()
+    exercicio_20()
 
 master()    
 
